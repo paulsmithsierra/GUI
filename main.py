@@ -88,7 +88,6 @@ class Example(QMainWindow):
         self.show()
 
 
-
     def openFile(self):
         options = QFileDialog.Options()
         fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "",
