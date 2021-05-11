@@ -17,7 +17,7 @@ class Example(QMainWindow):
     def initUI(self):
 
 
-        layout = QHBoxLayout()
+        layoutHorizontal = QHBoxLayout()
 
         widgetTable = QWidget()
         widgetTable.setStyleSheet('background-color: blue;')
@@ -34,12 +34,12 @@ class Example(QMainWindow):
         layoutVertical.addWidget(widgetStats, 1)
         layoutVertical.addWidget(widgetDetails, 1)
 
-        layout.addWidget(widgetTable, 3)
-        layout.addLayout(layoutVertical, 1)
+        layoutHorizontal.addWidget(widgetTable, 3)
+        layoutHorizontal.addLayout(layoutVertical, 1)
 
 
         widget = QWidget()
-        widget.setLayout(layout)
+        widget.setLayout(layoutHorizontal)
         self.setCentralWidget(widget)
 
         openAct = QAction(QIcon('open.png'), '&Open', self)
