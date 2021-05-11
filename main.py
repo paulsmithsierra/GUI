@@ -98,8 +98,7 @@ class Example(QMainWindow):
             fichier = open(fileName, 'r')
             self.data = [i.split(";") for i in fichier.read().split("\n")]
             print(self.data)
-            self.widgetTable = QTableWidget
-
+            self.widgetTable = QTableWidget(len(self.data)+1, len(self.data[0])+1)
 
 
 
