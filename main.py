@@ -1,5 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QApplication, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QApplication, QFileDialog, QHBoxLayout, QPushButton, \
+    QVBoxLayout, QWidget
 from PyQt5.QtGui import QIcon
 
 
@@ -14,6 +15,32 @@ class Example(QMainWindow):
         self.data = None
 
     def initUI(self):
+
+
+        layout = QHBoxLayout()
+
+        widgetTable = QWidget()
+        widgetTable.setStyleSheet('background-color: blue;')
+
+
+
+        layoutVertical = QVBoxLayout()
+
+        widgetStats = QWidget()
+        widgetDetails = QWidget()
+        widgetStats.setStyleSheet('background-color: red;')
+        widgetDetails.setStyleSheet('background-color: green;')
+
+        layoutVertical.addWidget(widgetStats, 1)
+        layoutVertical.addWidget(widgetDetails, 1)
+
+        layout.addWidget(widgetTable, 3)
+        layout.addLayout(layoutVertical, 1)
+
+
+        widget = QWidget()
+        widget.setLayout(layout)
+        self.setCentralWidget(widget)
 
         openAct = QAction(QIcon('open.png'), '&Open', self)
         openAct.setShortcut('Ctrl+O')
@@ -41,9 +68,12 @@ class Example(QMainWindow):
         fileMenu = menubar.addMenu('&Edit')
 
 
+
         self.setGeometry(300, 300, 400, 400)
         self.setWindowTitle('Data View')
         self.show()
+
+
 
 
     def openFile(self):
