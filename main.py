@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QApplication, QFileDialog, QHBoxLayout, QPushButton, \
-    QVBoxLayout, QWidget
+    QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QHeaderView
 from PyQt5.QtGui import QIcon
 
 
@@ -17,19 +17,30 @@ class Example(QMainWindow):
     def initUI(self):
 
 
-        layoutHorizontal = QHBoxLayout()
-
-        widgetTable = QWidget()
-        widgetTable.setStyleSheet('background-color: blue;')
+        #Widgets
+        widgetTable = QTableWidget()
 
 
+            # Row count
+        widgetTable.setRowCount(4)
 
-        layoutVertical = QVBoxLayout()
+            # Column count
+        widgetTable.setColumnCount(7)
+
+            # Table will fit the screen horizontally
+        widgetTable.horizontalHeader().setStretchLastSection(True)
+        widgetTable.horizontalHeader().setSectionResizeMode(
+            QHeaderView.Stretch)
+
 
         widgetStats = QWidget()
         widgetDetails = QWidget()
         widgetStats.setStyleSheet('background-color: red;')
         widgetDetails.setStyleSheet('background-color: green;')
+
+        #Layouts
+        layoutHorizontal = QHBoxLayout()
+        layoutVertical = QVBoxLayout()
 
         layoutVertical.addWidget(widgetStats, 1)
         layoutVertical.addWidget(widgetDetails, 1)
@@ -42,6 +53,8 @@ class Example(QMainWindow):
         widget.setLayout(layoutHorizontal)
         self.setCentralWidget(widget)
 
+
+        #Actions
         openAct = QAction(QIcon('open.png'), '&Open', self)
         openAct.setShortcut('Ctrl+O')
         openAct.setStatusTip('Open file dialog')
@@ -75,7 +88,6 @@ class Example(QMainWindow):
 
 
 
-
     def openFile(self):
         options = QFileDialog.Options()
         fileName, _ = QFileDialog.getOpenFileName(self, "Open File", "",
@@ -86,6 +98,10 @@ class Example(QMainWindow):
             fichier = open(fileName, 'r')
             self.data = [i.split(";") for i in fichier.read().split("\n")]
             print(self.data)
+
+
+
+
 
 
 def main():
