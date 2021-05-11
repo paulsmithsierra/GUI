@@ -13,23 +13,24 @@ class Example(QMainWindow):
         super().__init__()
         self.initUI()
         self.data = None
+        self.widgetTable = None
 
     def initUI(self):
 
 
         #Widgets
-        widgetTable = QTableWidget()
+        self.widgetTable = QTableWidget()
 
 
             # Row count
-        widgetTable.setRowCount(4)
+        self.widgetTable.setRowCount(4)
 
             # Column count
-        widgetTable.setColumnCount(7)
+        self.widgetTable.setColumnCount(7)
 
             # Table will fit the screen horizontally
-        widgetTable.horizontalHeader().setStretchLastSection(True)
-        widgetTable.horizontalHeader().setSectionResizeMode(
+        self.widgetTable.horizontalHeader().setStretchLastSection(True)
+        self.widgetTable.horizontalHeader().setSectionResizeMode(
             QHeaderView.Stretch)
 
 
@@ -45,7 +46,7 @@ class Example(QMainWindow):
         layoutVertical.addWidget(widgetStats, 1)
         layoutVertical.addWidget(widgetDetails, 1)
 
-        layoutHorizontal.addWidget(widgetTable, 3)
+        layoutHorizontal.addWidget(self.widgetTable, 3)
         layoutHorizontal.addLayout(layoutVertical, 1)
 
 
@@ -98,6 +99,7 @@ class Example(QMainWindow):
             fichier = open(fileName, 'r')
             self.data = [i.split(";") for i in fichier.read().split("\n")]
             print(self.data)
+            self.widgetTable = QTableWidget
 
 
 
